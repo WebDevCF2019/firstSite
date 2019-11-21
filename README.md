@@ -41,4 +41,6 @@ Modifions le chemin des annotations à "/" et le nom à "homapage" :
 ### Chargement de bootstrap
 On crée un dossier datas puis on télécharge bootstrap 4 : https://getbootstrap.com/docs/4.3/getting-started/download/
 
+On dézipe le fichier bootstrap, on met ensuite les dossiers js et css dans le dossier /public
+
        
