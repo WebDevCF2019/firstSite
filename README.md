@@ -1,11 +1,23 @@
 # firstSite
-### Premier site en Symfony 5
+## Premier site en Symfony 5
+### Pour installer Symfony sous Windows
+Téléchargez celui-ci sur :
+https://symfony.com/download
 
-#### Création d'un contrôleur
+Puis, dans le dossier désiré, installez celui-ci avec la commande:
+
+    symfony new firstSite --full
+### Pour lancer le serveur
+Mettez-vous dans le dossier firstSite
+
+    symfony server:start 
+### Création d'un contrôleur
+
 
     php bin/console make:controller
 
-On l'appelle BaseController. Dans src/controller/BaseController.php
+On l'appelle BaseController. Il se place ici : src/controller/BaseController.php
+Modifions le chemin des annotations à "/" et le nom à "homapage" :
 
     <?php
     
@@ -26,6 +38,7 @@ On l'appelle BaseController. Dans src/controller/BaseController.php
             ]);
         }
     }
-#### Pour lancer le server
+### Chargement de bootstrap
+On crée un dossier datas puis on télécharge bootstrap 4 : https://getbootstrap.com/docs/4.3/getting-started/download/
 
-    symfony server:start        
+       
