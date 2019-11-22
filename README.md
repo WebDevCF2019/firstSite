@@ -100,4 +100,75 @@ Création d'un fichier php contenant le sql créant les tables
 ### Migration vers votre database
 
     php app/console doctrine:migrations:migrate
-       
+Les tables ont bien été créées sur le database sql
+
+pour voir si nos mapping sont valides :
+
+    php bin/console doctrine:mapping:info
+    
+Pour vérifier la synchronicité entre les tables de la DB et les fichiers de mapping
+
+    php bin/console doctrine:schema:validate
+    
+### Création d'une relation OneToMany entre Utilisateurs et Articles
+
+Dans src/Entity/Articles.php (c'est du ManyToOne ! On crée les getters et setters, les noms utilisés sont ceux de la table qu'on veut lier (namespace et nom de la classe) !
+
+    /**
+         * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateurs", inversedBy="articles")
+         */
+        private $utilisateurs;
+    
+        public function getUtilisateurs(): ?Utilisateurs
+        {
+            return $this->utilisateurs;
+        }
+    
+        public function setUtilisateurs(?Utilisateurs $utilisateurs): self
+        {
+            $this->utilisateurs = $utilisateurs;
+    
+            return $this;
+        }            
+Dans src/Entity/Utilisateurs.php (c'est du OneToMany ! On crée les getters et un constructeur pour les mettres au format tableaux, les noms utilisés sont ceux de la table qu'on veut lier (namespace et nom de la classe) ! On doit utiliser en plus, (pour la gestion du many)     
+
+    ...
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\Common\Collections\Collection;
+    use Doctrine\ORM\Mapping as ORM;
+    ... 
+    ...
+     /**
+      * @ORM\OneToMany(targetEntity="App\Entity\Articles", mappedBy="utilisateurs")
+      */
+        private $articles;
+    
+        public function __construct()
+        {
+            $this->articles = new ArrayCollection();
+        }
+    
+        /**
+         * @return Collection|Articles[]
+         */
+        public function getArticles(): Collection
+        {
+            return $this->articles;
+        }
+Pour vérifier si le mapping est toujours exacte, on vide d'abord le cache:
+
+    php bin/console cache:clear
+Puis on vérifie le mapping
+
+    php bin/console doctrine:schema:validate
+
+Si le mapping est exacte: [OK], normalement la DB est en [ERROR], car il n'y a plus de lien entre les fichiers et la db
+
+Pour voir les requêtes pour mettre à jour la DB (synchronisation)
+
+    php bin/console doctrine:schema:update --dump-sql
+    
+Pour réellement mettre à jour la DB
+
+    php bin/console doctrine:schema:update --force
+                    

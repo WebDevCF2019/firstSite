@@ -36,6 +36,23 @@ class Articles
      */
     private $ladate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Utilisateurs", inversedBy="articles")
+     */
+    private $utilisateurs;
+
+    public function getUtilisateurs(): ?Utilisateurs
+    {
+        return $this->utilisateurs;
+    }
+
+    public function setUtilisateurs(?Utilisateurs $utilisateurs): self
+    {
+        $this->utilisateurs = $utilisateurs;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
