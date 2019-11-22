@@ -70,4 +70,15 @@ On a créé un fichier twig nommé bootstrap4.html.twig qui charge le css et les
 contient donc:
 
     {% extends 'bootstrap4.html.twig' %}
-              
+### Création d'une database mysql
+dans .env.local on va changer
+
+    DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7
+par :
+
+    DATABASE_URL=mysql://root:@127.0.0.1:3306/firstsite?serverVersion=5.7   
+Ceci devrait, en local du moins, permettre la création de la DB en utilisant doctrine
+
+    php bin/console doctrine:database:create
+La database "firstsite" est maintenant créée    
+        
