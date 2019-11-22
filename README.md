@@ -90,5 +90,11 @@ On crée 2 futures tables : Articles et Utilisateurs, en choisissant le nom des 
 Sont créés le mapping de ces tables (dans src/Entity/) avec les getters et setters
 
 Sont également créés leurs Repository (dans src/Repository) les "managers" des tables ci-dessus
+### Voir les services actifs
 
+    php bin/console debug:autowiring --all
+### Pour créer le fichier de migration vers MySQL
+
+    php bin/console make:migration
+Création d'un fichier php contenant le sql créant les tables        
    
