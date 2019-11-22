@@ -97,4 +97,7 @@ Sont également créés leurs Repository (dans src/Repository) les "managers" de
 
     php bin/console make:migration
 Création d'un fichier php contenant le sql créant les tables        
-   
+### Migration vers votre database
+
+    php app/console doctrine:migrations:migrate
+       
