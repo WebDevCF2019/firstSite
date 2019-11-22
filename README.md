@@ -38,6 +38,23 @@ Modifions le chemin des annotations à "/" et le nom à "homapage" :
             ]);
         }
     }
+### Création de .env.local
+C'est une copie de .env qui se trouve dans .gitignore, il ne sera donc pas envoyé sur un serveur git (github ...) pour des raisons de sécurité (par exemple la connexion à la db se trouve dans ce fichier)    
+
+On peut tester ce fichier en changeant
+
+    APP_ENV=dev
+en
+
+    APP_ENV=prod    
+On passe ici du mode développement au mode production
+
+### Accès au site
+Dans .env.local on peut permettre à accès qu'aux hôtes mentionnés en décommentant:
+
+    # hôtes autorisés pour accèder au site séparés par des pipes |
+    TRUSTED_HOSTS='^localhost|example\.com|127.0.0.1$'    
+    
 ### Chargement de bootstrap
 On crée un dossier datas puis on télécharge bootstrap 4 : https://getbootstrap.com/docs/4.3/getting-started/download/
 
