@@ -60,4 +60,14 @@ On crée un dossier datas puis on télécharge bootstrap 4 : https://getbootstra
 
 On dézipe le fichier bootstrap, on met ensuite les dossiers js et css dans le dossier /public
 
-       
+on utilise asset pour la gestion de ces fichiers:
+
+    <script src="{{ asset('js/popper.min.js') }}"></script>    
+    
+On a créé un fichier twig nommé bootstrap4.html.twig qui charge le css et les jss de bootsrap, tous fichiers utilisant bootstrap devront être les "enfants" de celui-ci: 
+
+    templates/base/index.html.twig
+contient donc:
+
+    {% extends 'bootstrap4.html.twig' %}
+              
