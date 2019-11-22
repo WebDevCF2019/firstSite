@@ -81,4 +81,14 @@ Ceci devrait, en local du moins, permettre la création de la DB en utilisant do
 
     php bin/console doctrine:database:create
 La database "firstsite" est maintenant créée    
-        
+### Création d'entités
+
+    php bin/console make:entity    
+    
+On crée 2 futures tables : Articles et Utilisateurs, en choisissant le nom des champs (sauf l'id)
+
+Sont créés le mapping de ces tables (dans src/Entity/) avec les getters et setters
+
+Sont également créés leurs Repository (dans src/Repository) les "managers" des tables ci-dessus
+
+   
